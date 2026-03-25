@@ -1,0 +1,33 @@
+Site Recovery Summary
+=====================
+
+Source URL:
+https://psychedelic-institute.net/
+
+Output Directory:
+./psychedelic-institute-recovery
+
+Files Created:
+- HTML: ./psychedelic-institute-recovery/raw/page.html
+- Original asset URL list: ./psychedelic-institute-recovery/data/original-assets.txt
+- Media asset URL list: ./psychedelic-institute-recovery/data/media-assets.txt
+- All links: ./psychedelic-institute-recovery/data/all-links.txt
+- Button/action links: ./psychedelic-institute-recovery/data/button-links.txt
+- Visible text: ./psychedelic-institute-recovery/data/visible-text.txt
+- Wget log: ./psychedelic-institute-recovery/reports/wget.log
+
+Counts:
+- Original asset URLs: 36
+- Media asset URLs: 89
+- All links: 116
+- Button/action links: 29
+- Visible text lines: 69
+
+Downloaded Asset Directories:
+- Original assets: ./psychedelic-institute-recovery/assets/original
+- Media assets: ./psychedelic-institute-recovery/assets/media
+
+Notes:
+- "Original assets" are preferred because they try to bypass transformed CDN wrappers.
+- "Media assets" include thumbnails, direct media references, and some supporting files.
+- Text extraction is approximate and intended for reconstruction, not legal archiving.

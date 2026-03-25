@@ -1,0 +1,33 @@
+Site Recovery Summary
+=====================
+
+Source URL:
+https://psychedelic-institute.net/guardian
+
+Output Directory:
+./guardian-recovery
+
+Files Created:
+- HTML: ./guardian-recovery/raw/page.html
+- Original asset URL list: ./guardian-recovery/data/original-assets.txt
+- Media asset URL list: ./guardian-recovery/data/media-assets.txt
+- All links: ./guardian-recovery/data/all-links.txt
+- Button/action links: ./guardian-recovery/data/button-links.txt
+- Visible text: ./guardian-recovery/data/visible-text.txt
+- Wget log: ./guardian-recovery/reports/wget.log
+
+Counts:
+- Original asset URLs: 4
+- Media asset URLs: 50
+- All links: 75
+- Button/action links: 41
+- Visible text lines: 9
+
+Downloaded Asset Directories:
+- Original assets: ./guardian-recovery/assets/original
+- Media assets: ./guardian-recovery/assets/media
+
+Notes:
+- "Original assets" are preferred because they try to bypass transformed CDN wrappers.
+- "Media assets" include thumbnails, direct media references, and some supporting files.
+- Text extraction is approximate and intended for reconstruction, not legal archiving.

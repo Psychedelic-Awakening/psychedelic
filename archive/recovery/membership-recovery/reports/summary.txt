@@ -1,0 +1,33 @@
+Site Recovery Summary
+=====================
+
+Source URL:
+https://psychedelic-institute.net/membership
+
+Output Directory:
+./membership-recovery
+
+Files Created:
+- HTML: ./membership-recovery/raw/page.html
+- Original asset URL list: ./membership-recovery/data/original-assets.txt
+- Media asset URL list: ./membership-recovery/data/media-assets.txt
+- All links: ./membership-recovery/data/all-links.txt
+- Button/action links: ./membership-recovery/data/button-links.txt
+- Visible text: ./membership-recovery/data/visible-text.txt
+- Wget log: ./membership-recovery/reports/wget.log
+
+Counts:
+- Original asset URLs: 11
+- Media asset URLs: 67
+- All links: 94
+- Button/action links: 54
+- Visible text lines: 36
+
+Downloaded Asset Directories:
+- Original assets: ./membership-recovery/assets/original
+- Media assets: ./membership-recovery/assets/media
+
+Notes:
+- "Original assets" are preferred because they try to bypass transformed CDN wrappers.
+- "Media assets" include thumbnails, direct media references, and some supporting files.
+- Text extraction is approximate and intended for reconstruction, not legal archiving.

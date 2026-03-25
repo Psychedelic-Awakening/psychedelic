@@ -1,0 +1,33 @@
+Site Recovery Summary
+=====================
+
+Source URL:
+https://psychedelic-institute.net/ty-g
+
+Output Directory:
+./tyg-recovery
+
+Files Created:
+- HTML: ./tyg-recovery/raw/page.html
+- Original asset URL list: ./tyg-recovery/data/original-assets.txt
+- Media asset URL list: ./tyg-recovery/data/media-assets.txt
+- All links: ./tyg-recovery/data/all-links.txt
+- Button/action links: ./tyg-recovery/data/button-links.txt
+- Visible text: ./tyg-recovery/data/visible-text.txt
+- Wget log: ./tyg-recovery/reports/wget.log
+
+Counts:
+- Original asset URLs: 4
+- Media asset URLs: 35
+- All links: 56
+- Button/action links: 29
+- Visible text lines: 4
+
+Downloaded Asset Directories:
+- Original assets: ./tyg-recovery/assets/original
+- Media assets: ./tyg-recovery/assets/media
+
+Notes:
+- "Original assets" are preferred because they try to bypass transformed CDN wrappers.
+- "Media assets" include thumbnails, direct media references, and some supporting files.
+- Text extraction is approximate and intended for reconstruction, not legal archiving.
