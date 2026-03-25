@@ -24,3 +24,8 @@ Run the site locally from `app/`:
 - `pnpm dev`
 - `pnpm build`
 - `pnpm preview`
+
+## Deployment
+
+- Cloudflare Pages is the recommended first deployment target for owner review.
+- Deployment notes: `docs/deploy-cloudflare-pages.md`
