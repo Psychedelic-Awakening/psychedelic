@@ -1,0 +1,44 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import Layout from '../layouts/Layout.astro';
+import { thankYouPage } from '../data/site';
+---
+
+<Layout title="Thank You | Psychedelic Institute" description={thankYouPage.body}>
+	<main class="section">
+		<div class="container">
+			<section class="section-shell">
+				<div class="section-heading">
+					<div class="eyebrow">Recovered Funnel Page</div>
+					<h1>{thankYouPage.title}</h1>
+					<p class="section-copy">{thankYouPage.body}</p>
+					<p class="section-copy" id="guardian-submission-note">
+						If the guardian form was submitted from this rebuilt site, a lightweight submission
+						record is stored in session for confirmation during testing.
+					</p>
+				</div>
+				<div class="stack-actions">
+					<a class="button" href="/">Return Home</a>
+					<a class="pill-link" href="/membership">View Membership Options</a>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<SiteFooter />
+</Layout>
+
+<script is:inline>
+	const note = document.getElementById('guardian-submission-note');
+	const raw = sessionStorage.getItem('guardianApplication');
+	if (note && raw) {
+		try {
+			const data = JSON.parse(raw);
+			if (data?.fullName) {
+				note.textContent = `Thanks, ${data.fullName}. Your guardian application flow was captured locally for testing and the thank-you route is working.`;
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	}
+</script>

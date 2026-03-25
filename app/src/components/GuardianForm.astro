@@ -1,0 +1,136 @@
+---
+const guardianEndpoint = import.meta.env.PUBLIC_GUARDIAN_FORM_ENDPOINT || '';
+const successUrl = '/ty-g/';
+---
+
+<section class="section-shell">
+	<div class="section-heading">
+		<div class="eyebrow">Guardian Intake</div>
+		<h2>Apply to become a guardian</h2>
+		<p class="section-copy">
+			This rebuilt form preserves the original recovered fields and can post to an external form
+			endpoint when `PUBLIC_GUARDIAN_FORM_ENDPOINT` is configured.
+		</p>
+	</div>
+
+	<form
+		class="form-card"
+		data-guardian-form
+		data-endpoint={guardianEndpoint}
+		data-success-url={successUrl}
+		action={successUrl}
+		method="GET"
+	>
+		<div class="form-grid">
+			<label class="field">
+				<span>Full Name *</span>
+				<input name="fullName" type="text" autocomplete="name" required />
+			</label>
+
+			<label class="field">
+				<span>Phone *</span>
+				<input name="phone" type="tel" autocomplete="tel" required />
+			</label>
+
+			<label class="field">
+				<span>Email *</span>
+				<input name="email" type="email" autocomplete="email" required />
+			</label>
+
+			<label class="field field--full">
+				<span>Why are you interested in the guardian tier?</span>
+				<textarea
+					name="notes"
+					rows="5"
+					placeholder="Tell us a bit about your connection to the movement and how you want to support it."
+				></textarea>
+			</label>
+		</div>
+
+		<label class="consent">
+			<input name="consent" type="checkbox" value="yes" required />
+			<span>
+				I consent to receive SMS notifications, alerts, and occasional marketing communication
+				from the company. Message frequency varies. Message &amp; data rates may apply. Text HELP
+				to the listed number for assistance. Reply STOP to unsubscribe at any time.
+			</span>
+		</label>
+
+		<div class="stack-actions">
+			<button class="button" type="submit">Submit Application</button>
+			<a class="pill-link" href="/membership">Back To Membership</a>
+		</div>
+
+		<p class="form-status" data-form-status aria-live="polite"></p>
+	</form>
+</section>
+
+<script is:inline>
+	const form = document.querySelector('[data-guardian-form]');
+	if (form instanceof HTMLFormElement) {
+		const status = form.querySelector('[data-form-status]');
+		const submitButton = form.querySelector('button[type="submit"]');
+		const endpoint = form.dataset.endpoint?.trim();
+		const successUrl = form.dataset.successUrl || '/ty-g/';
+
+		form.addEventListener('submit', async (event) => {
+			if (!form.reportValidity()) {
+				event.preventDefault();
+				return;
+			}
+
+			const formData = new FormData(form);
+			const payload = Object.fromEntries(formData.entries());
+			sessionStorage.setItem(
+				'guardianApplication',
+				JSON.stringify({
+					fullName: payload.fullName,
+					email: payload.email,
+					submittedAt: new Date().toISOString(),
+				}),
+			);
+
+			if (!endpoint) {
+				event.preventDefault();
+				window.location.assign(successUrl);
+				return;
+			}
+
+			event.preventDefault();
+			if (submitButton instanceof HTMLButtonElement) {
+				submitButton.disabled = true;
+				submitButton.textContent = 'Submitting...';
+			}
+			if (status instanceof HTMLElement) {
+				status.textContent = '';
+			}
+
+			try {
+				const response = await fetch(endpoint, {
+					method: 'POST',
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(payload),
+				});
+
+				if (!response.ok) {
+					throw new Error(`Guardian submission failed with status ${response.status}`);
+				}
+
+				window.location.assign(successUrl);
+			} catch (error) {
+				if (submitButton instanceof HTMLButtonElement) {
+					submitButton.disabled = false;
+					submitButton.textContent = 'Submit Application';
+				}
+				if (status instanceof HTMLElement) {
+					status.textContent =
+						'Submission failed. Set PUBLIC_GUARDIAN_FORM_ENDPOINT to a working external form endpoint before launch.';
+				}
+				console.error(error);
+			}
+		});
+	}
+</script>

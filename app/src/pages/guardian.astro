@@ -1,0 +1,32 @@
+---
+import GuardianForm from '../components/GuardianForm.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { guardianPage, site } from '../data/site';
+---
+
+<Layout title="Guardian Application | Psychedelic Institute" description={guardianPage.intro}>
+	<SiteHeader currentPath="/guardian" loginUrl={site.loginUrl} />
+
+	<main class="section">
+		<div class="container grid">
+			<section class="section-shell">
+				<div class="section-heading">
+					<div class="eyebrow">Recovered Funnel Page</div>
+					<h1>{guardianPage.title}</h1>
+					<p class="section-copy">{guardianPage.intro}</p>
+				</div>
+			</section>
+
+			<GuardianForm />
+
+			<section class="notice">
+				<h3>Current Status</h3>
+				<p>{guardianPage.note}</p>
+			</section>
+		</div>
+	</main>
+
+	<SiteFooter />
+</Layout>

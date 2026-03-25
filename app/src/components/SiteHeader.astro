@@ -1,0 +1,42 @@
+---
+interface Props {
+	currentPath?: string;
+	loginUrl?: string;
+}
+
+const { currentPath = '/', loginUrl } = Astro.props;
+
+const nav = [
+	{ href: '/', label: 'Home' },
+	{ href: '/membership', label: 'Membership' },
+	{ href: '/guardian', label: 'Guardian' },
+];
+---
+
+<header class="site-header">
+	<div class="container">
+		<div class="site-header__bar">
+			<a class="site-header__brand" href="/">
+				<img src="/images/logo.png" alt="Psychedelic Institute" />
+			</a>
+			<nav class="site-header__nav" aria-label="Primary">
+				{
+					nav.map((item) => (
+						<a
+							class:list={['pill-link', { 'pill-link--active': currentPath === item.href }]}
+							href={item.href}
+							aria-current={currentPath === item.href ? 'page' : undefined}
+						>
+							{item.label}
+						</a>
+					))
+				}
+				{loginUrl && (
+					<a class="pill-link" href={loginUrl} target="_blank" rel="noreferrer">
+						Login
+					</a>
+				)}
+			</nav>
+		</div>
+	</div>
+</header>

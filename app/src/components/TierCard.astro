@@ -1,0 +1,32 @@
+---
+interface Tier {
+	name: string;
+	price: string;
+	features: string[];
+	cta: {
+		label: string;
+		href: string;
+	};
+}
+
+const { tier } = Astro.props as { tier: Tier };
+const external = tier.cta.href.startsWith('http');
+---
+
+<article class="card tier-card">
+	<h3>{tier.name}</h3>
+	<div class="price">{tier.price}</div>
+	<ul>
+		{tier.features.map((feature) => <li>{feature}</li>)}
+	</ul>
+	<div class="stack-actions">
+		<a
+			class="button"
+			href={tier.cta.href}
+			target={external ? '_blank' : undefined}
+			rel={external ? 'noreferrer' : undefined}
+		>
+			{tier.cta.label}
+		</a>
+	</div>
+</article>

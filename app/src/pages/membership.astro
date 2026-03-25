@@ -1,0 +1,49 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import TierCard from '../components/TierCard.astro';
+import Layout from '../layouts/Layout.astro';
+import { homeSections, membershipPage, site } from '../data/site';
+---
+
+<Layout title="Membership Options | Psychedelic Institute" description={membershipPage.intro}>
+	<SiteHeader currentPath="/membership" loginUrl={site.loginUrl} />
+
+	<main class="section">
+		<div class="container grid">
+			<section class="section-shell">
+				<div class="section-heading">
+					<div class="eyebrow">Recovered Funnel Page</div>
+					<h1>{membershipPage.title}</h1>
+					<p class="section-copy">{membershipPage.intro}</p>
+				</div>
+			</section>
+
+			<section class="section-shell">
+				<div class="grid grid--3">
+					{homeSections.membership.tiers.map((tier) => <TierCard tier={tier} />)}
+				</div>
+			</section>
+
+			<section class="section-shell">
+				<div class="grid grid--2">
+					<div class="notice">
+						<h3>One-Time Donation Flow</h3>
+						<p>{membershipPage.donationNote}</p>
+						<div class="stack-actions">
+							{homeSections.donation.amounts.map((amount) => <span class="price">{amount}</span>)}
+						</div>
+					</div>
+					<div class="card">
+						<h3>Recovered donation fields</h3>
+						<ul>
+							{membershipPage.recoveredFields.map((field) => <li>{field}</li>)}
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+
+	<SiteFooter />
+</Layout>

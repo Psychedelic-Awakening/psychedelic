@@ -1,0 +1,203 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import TierCard from '../components/TierCard.astro';
+import Layout from '../layouts/Layout.astro';
+import { homeSections, site } from '../data/site';
+---
+
+<Layout title="Psychedelic Institute" description={site.description}>
+	<SiteHeader currentPath="/" loginUrl={site.loginUrl} />
+
+	<main>
+		<section class="hero">
+			<div class="container hero__grid">
+				<div class="hero__copy">
+					<div class="eyebrow">{homeSections.hero.eyebrow}</div>
+					<h1>{homeSections.hero.title}</h1>
+					<p class="hero__lede">{homeSections.hero.intro}</p>
+					<div class="hero__actions">
+						<a class="button" href={homeSections.hero.primaryCta.href}>
+							{homeSections.hero.primaryCta.label}
+						</a>
+						<a
+							class="button button--ghost"
+							href={homeSections.hero.secondaryCta.href}
+							target="_blank"
+							rel="noreferrer"
+						>
+							{homeSections.hero.secondaryCta.label}
+						</a>
+					</div>
+				</div>
+
+				<aside class="hero__media">
+					<div class="hero__media-card">
+						<h3>Watch below to learn more about the movement</h3>
+						<p>
+							The original funnel used a Vimeo embed for the primary introduction and also
+							carried a YouTube reference during the recovery process.
+						</p>
+						<div class="stack-actions">
+							<a class="button" href={site.vimeoUrl} target="_blank" rel="noreferrer">Open Vimeo</a>
+							<a class="pill-link" href={site.youtubeUrl} target="_blank" rel="noreferrer"
+								>Open YouTube</a
+							>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>Join our awakening community</h2>
+					<p class="section-copy">
+						Recovered from the original home page: the site positioned itself as an education-driven
+						community anchored in online discussion, live events, and visible healing stories.
+					</p>
+				</div>
+				<div class="grid grid--3">
+					{
+						homeSections.featureCards.map((card) => (
+							<article class="card">
+								<h3>{card.title}</h3>
+								<p>{card.body}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.community.title}</h2>
+					<p class="section-copy">{homeSections.community.body}</p>
+				</div>
+				<div class="stat-row">
+					{
+						homeSections.community.stats.map((stat) => (
+							<div class="stat">
+								<strong>{stat.value}</strong>
+								<p>{stat.label}</p>
+							</div>
+						))
+					}
+				</div>
+				<div class="photo-strip">
+					<div class="photo-card">
+						<img src="/images/photo-membership-1.jpeg" alt="Recovered community image 1" />
+					</div>
+					<div class="photo-card">
+						<img src="/images/photo-membership-2.jpeg" alt="Recovered community image 2" />
+					</div>
+					<div class="photo-card">
+						<img src="/images/photo-membership-3.jpeg" alt="Recovered community image 3" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.memberExperience.title}</h2>
+					<p class="section-copy">{homeSections.memberExperience.body}</p>
+				</div>
+				<div class="grid grid--3">
+					{
+						homeSections.memberExperience.items.map((item) => (
+							<article class="card">
+								<h3>{item.title}</h3>
+								<p>{item.body}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="membership-options">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.membership.title}</h2>
+					<p class="section-copy">{homeSections.membership.body}</p>
+				</div>
+				<div class="grid grid--3">
+					{homeSections.membership.tiers.map((tier) => <TierCard tier={tier} />)}
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.donation.title}</h2>
+					<p class="section-copy">{homeSections.donation.body}</p>
+				</div>
+				<div class="grid grid--2">
+					<div class="notice">
+						<h3>Recovered one-time donation amounts</h3>
+						<div class="stack-actions">
+							{homeSections.donation.amounts.map((amount) => <span class="price">{amount}</span>)}
+						</div>
+					</div>
+					<div class="card">
+						<h3>Integration status</h3>
+						<p>
+							The original payment element lived inside HighLevel. The current rebuild preserves
+							the tiers and the donation language, but the standalone donation checkout still
+							needs to be wired for deployment.
+						</p>
+						<div class="stack-actions">
+							<a class="button" href="/membership">Open Membership Page</a>
+							<a class="pill-link" href="/guardian">Apply As Guardian</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.testimonials.title}</h2>
+					<p class="section-copy">
+						The original site used a testimonial carousel with minimal recovered copy. These are
+						preserved as placeholders until the final approved testimonials are restored.
+					</p>
+				</div>
+				<div class="grid grid--3">
+					{
+						homeSections.testimonials.items.map((item) => (
+							<article class="card">
+								<h3>{item.quote}</h3>
+								<p>{item.body}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container section-shell">
+				<div class="section-heading">
+					<h2>{homeSections.footerCta.title}</h2>
+					<p class="section-copy">{homeSections.footerCta.body}</p>
+				</div>
+				<div class="stack-actions">
+					<a class="button" href={homeSections.footerCta.cta.href}>
+						{homeSections.footerCta.cta.label}
+					</a>
+					<a class="pill-link" href="/ty-g">Recovered Thank-You Page</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<SiteFooter />
+</Layout>
