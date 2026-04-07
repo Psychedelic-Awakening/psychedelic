@@ -1,0 +1,9 @@
+[build]
+  base = "app"
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22.12.0"
+  NPM_FLAGS = "--version" # bypass npm install; pnpm handles deps
+  PNPM_VERSION = "9"
