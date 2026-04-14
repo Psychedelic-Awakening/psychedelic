@@ -1,6 +1,6 @@
 export const site = {
 	name: 'Psychedelic Institute',
-	description: 'Community, education, events, and membership for the Psychedelic Institute rebuild.',
+	description: 'Community, education, events, and membership for the Psychedelic Institute.',
 	loginUrl: 'https://billing.stripe.com/p/login/bIYbL3gul1k5boAcMM',
 	circleContributorUrl: 'https://awakening-events-pila-361df6.circle.so/checkout/contributor-membership',
 	circleInnerCircleUrl: 'https://awakening-events-pila-361df6.circle.so/checkout/inner-circle',
@@ -42,7 +42,7 @@ export const homeSections = {
 	},
 	memberExperience: {
 		title: 'Daily connection, weekly calls, monthly events',
-		body: 'The recovered home page emphasized a simple rhythm: check in daily, join support and training sessions weekly, and meet in person each month.',
+		body: 'A simple rhythm: check in daily, join support and training sessions weekly, and meet in person each month.',
 		items: [
 			{
 				title: 'Daily Connection',
@@ -111,21 +111,21 @@ export const homeSections = {
 		items: [
 			{
 				quote: 'Love this community',
-				body: 'Recovered from the original home page testimonial block.',
+				body: '',
 			},
 			{
 				quote: 'My life changed forever thanks to plant medicine',
-				body: 'Recovered headline from the original testimonial carousel.',
+				body: '',
 			},
 			{
 				quote: 'Life changing connections',
-				body: 'Recovered headline from the original testimonial carousel.',
+				body: '',
 			},
 		],
 	},
 	footerCta: {
 		title: 'Community, training, and updates in one place.',
-		body: 'The replacement site is now scaffolded and ready to absorb the recovered funnel pages, assets, and integrations.',
+		body: 'Join the community and stay connected with events, training, and updates.',
 		cta: { label: 'View Membership Options', href: '/membership' },
 	},
 };
@@ -153,8 +153,8 @@ export const donatePage = {
 export const guardianPage = {
 	title: 'Guardian Application',
 	intro:
-		'The original guardian page was a minimal application form collecting name, phone, email, and consent.',
-	note: 'This route is preserved so the rebuilt site can keep the same funnel shape while the final intake flow is reimplemented.',
+		'Apply to become a guardian and support the movement at the highest level.',
+	note: 'Guardians receive access to private retreats, VIP event access, and direct involvement in scaling the mission.',
 };
 
 export const thankYouPage = {

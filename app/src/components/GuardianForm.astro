@@ -8,8 +8,7 @@ const successUrl = '/ty-g/';
 		<div class="eyebrow">Guardian Intake</div>
 		<h2>Apply to become a guardian</h2>
 		<p class="section-copy">
-			This rebuilt form preserves the original recovered fields and can post to an external form
-			endpoint when `PUBLIC_GUARDIAN_FORM_ENDPOINT` is configured.
+			Fill out the form below and we will be in touch about the guardian tier.
 		</p>
 	</div>
 
@@ -127,7 +126,7 @@ const successUrl = '/ty-g/';
 				}
 				if (status instanceof HTMLElement) {
 					status.textContent =
-						'Submission failed. Set PUBLIC_GUARDIAN_FORM_ENDPOINT to a working external form endpoint before launch.';
+						'Submission failed. Please try again later.';
 				}
 				console.error(error);
 			}
