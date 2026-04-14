@@ -26,20 +26,22 @@ import { homeSections, membershipPage, site } from '../data/site';
 			</section>
 
 			<section class="section-shell">
-				<div class="grid grid--2">
-					<div class="notice">
-						<h3>One-Time Donation Flow</h3>
-						<p>{membershipPage.donationNote}</p>
-						<div class="stack-actions">
-							{homeSections.donation.amounts.map((amount) => <span class="price">{amount}</span>)}
-						</div>
-					</div>
-					<div class="card">
-						<h3>Recovered donation fields</h3>
-						<ul>
-							{membershipPage.recoveredFields.map((field) => <li>{field}</li>)}
-						</ul>
-					</div>
+				<div class="section-heading">
+					<h3>One-Time Donation</h3>
+					<p>{membershipPage.donationNote}</p>
+				</div>
+				<div class="stack-actions">
+					{homeSections.donation.amounts.map((amount) => (
+						<a
+							class="price"
+							href={amount.value ? `/donate?amount=${amount.value}` : '/donate'}
+						>
+							{amount.label}
+						</a>
+					))}
+				</div>
+				<div class="stack-actions">
+					<a class="button" href="/donate">Donate Now</a>
 				</div>
 			</section>
 		</div>

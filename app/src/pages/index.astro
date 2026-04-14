@@ -138,25 +138,18 @@ import { homeSections, site } from '../data/site';
 					<h2>{homeSections.donation.title}</h2>
 					<p class="section-copy">{homeSections.donation.body}</p>
 				</div>
-				<div class="grid grid--2">
-					<div class="notice">
-						<h3>Recovered one-time donation amounts</h3>
-						<div class="stack-actions">
-							{homeSections.donation.amounts.map((amount) => <span class="price">{amount}</span>)}
-						</div>
-					</div>
-					<div class="card">
-						<h3>Integration status</h3>
-						<p>
-							The original payment element lived inside HighLevel. The current rebuild preserves
-							the tiers and the donation language, but the standalone donation checkout still
-							needs to be wired for deployment.
-						</p>
-						<div class="stack-actions">
-							<a class="button" href="/membership">Open Membership Page</a>
-							<a class="pill-link" href="/guardian">Apply As Guardian</a>
-						</div>
-					</div>
+				<div class="stack-actions">
+					{homeSections.donation.amounts.map((amount) => (
+						<a
+							class="price"
+							href={amount.value ? `/donate?amount=${amount.value}` : '/donate'}
+						>
+							{amount.label}
+						</a>
+					))}
+				</div>
+				<div class="stack-actions">
+					<a class="button" href={homeSections.donation.cta.href}>{homeSections.donation.cta.label}</a>
 				</div>
 			</div>
 		</section>

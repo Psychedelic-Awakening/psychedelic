@@ -1,0 +1,57 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Layout from '../layouts/Layout.astro';
+import { donatePage, site } from '../data/site';
+
+const campaignCode = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || '';
+---
+
+<Layout title="Donate | Psychedelic Institute" description={donatePage.intro}>
+	<SiteHeader currentPath="/donate" loginUrl={site.loginUrl} />
+
+	<main class="section">
+		<div class="container grid">
+			<section class="section-shell">
+				<div class="section-heading">
+					<div class="eyebrow">One-Time Donation</div>
+					<h1>{donatePage.title}</h1>
+					<p class="section-copy">{donatePage.intro}</p>
+				</div>
+			</section>
+
+			<section class="section-shell donate-form-wrapper">
+				{campaignCode ? (
+					<givebutter-giving-form campaign={campaignCode} theme-color="#d4ff4f" />
+				) : (
+					<div class="notice">
+						<h3>Donation form not configured</h3>
+						<p>Set PUBLIC_GIVEBUTTER_CAMPAIGN_CODE in your environment to enable the donation form.</p>
+					</div>
+				)}
+			</section>
+
+			<section class="section-shell">
+				<div class="section-heading">
+					<h2>Your impact</h2>
+				</div>
+				<ul>
+					{donatePage.whyDonate.map((reason) => <li>{reason}</li>)}
+				</ul>
+			</section>
+		</div>
+	</main>
+
+	<SiteFooter />
+</Layout>
+
+<script is:inline>
+	const params = new URLSearchParams(window.location.search);
+	const amount = params.get('amount');
+	if (amount) {
+		const form = document.querySelector('givebutter-giving-form');
+		if (form) {
+			form.setAttribute('amount', amount);
+		}
+	}
+</script>

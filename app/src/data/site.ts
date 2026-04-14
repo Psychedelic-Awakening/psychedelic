@@ -96,8 +96,15 @@ export const homeSections = {
 	},
 	donation: {
 		title: 'Why donate?',
-		body: 'The original funnel framed one-time donations as support for research, education, certification, and public-facing events around psychedelic-assisted therapies.',
-		amounts: ['$50', '$100', '$250', '$500', 'Other amount'],
+		body: 'Your one-time donation supports research, education, certification, and public-facing events around psychedelic-assisted therapies.',
+		amounts: [
+			{ value: 50, label: '$50' },
+			{ value: 100, label: '$100' },
+			{ value: 250, label: '$250' },
+			{ value: 500, label: '$500' },
+			{ value: null, label: 'Other amount' },
+		],
+		cta: { label: 'Donate Now', href: '/donate' },
 	},
 	testimonials: {
 		title: 'Why others recommend us',
@@ -126,10 +133,21 @@ export const homeSections = {
 export const membershipPage = {
 	title: 'Membership Options',
 	intro:
-		'Recovered from the original funnel: contributor, inner circle, and guardian membership options, plus one-time donation messaging.',
+		'Contributor, inner circle, and guardian membership options, plus one-time donations to support the movement.',
 	donationNote:
-		'The original one-time donation checkout was embedded in HighLevel and still needs to be rebuilt as a standalone payment flow.',
-	recoveredFields: ['Full Name', 'Phone', 'Email', 'Donation Amount', 'SMS consent'],
+		'Support the movement with a one-time donation. Every contribution funds research, education, and community events.',
+};
+
+export const donatePage = {
+	title: 'Support the Movement',
+	intro:
+		'Your one-time donation funds psychedelic research, education, certification programs, and community events that change lives.',
+	whyDonate: [
+		'Fund cutting-edge psychedelic research and clinical trials',
+		'Support education and certification for therapists and facilitators',
+		'Enable free and subsidized community events',
+		'Advance policy reform and public awareness',
+	],
 };
 
 export const guardianPage = {
