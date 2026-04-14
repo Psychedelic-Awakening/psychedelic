@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
 import { donatePage, site } from '../data/site';
 
-const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_WIDGET_ID || '';
+const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || '';
 ---
 
 <Layout title="Donate | Psychedelic Institute" description={donatePage.intro}>
@@ -31,7 +31,7 @@ const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_WIDGET_ID || '';
 						) : (
 							<div class="notice">
 								<h3>Donation form not configured</h3>
-								<p>Set PUBLIC_GIVEBUTTER_WIDGET_ID in your environment to enable the donation form.</p>
+								<p>Set PUBLIC_GIVEBUTTER_CAMPAIGN_CODE in your environment to enable the donation form.</p>
 							</div>
 						)}
 					</div>
