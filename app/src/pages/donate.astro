@@ -4,40 +4,38 @@ import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
 import { donatePage, site } from '../data/site';
 
-const campaignCode = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || '';
+const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_WIDGET_ID || '';
 ---
 
 <Layout title="Donate | Psychedelic Institute" description={donatePage.intro}>
 	<SiteHeader currentPath="/donate" loginUrl={site.loginUrl} />
 
 	<main class="section">
-		<div class="container grid">
+		<div class="container">
 			<section class="section-shell">
-				<div class="section-heading">
-					<div class="eyebrow">One-Time Donation</div>
-					<h1>{donatePage.title}</h1>
-					<p class="section-copy">{donatePage.intro}</p>
-				</div>
-			</section>
-
-			<section class="section-shell donate-form-wrapper">
-				{campaignCode ? (
-					<givebutter-giving-form campaign={campaignCode} theme-color="#d4ff4f" />
-				) : (
-					<div class="notice">
-						<h3>Donation form not configured</h3>
-						<p>Set PUBLIC_GIVEBUTTER_CAMPAIGN_CODE in your environment to enable the donation form.</p>
+				<div class="donate-layout">
+					<div class="donate-copy">
+						<div class="eyebrow">One-Time Donation</div>
+						<h1>{donatePage.title}</h1>
+						<p class="section-copy">{donatePage.intro}</p>
+						<div class="donate-impact">
+							<h3>Your impact</h3>
+							<ul>
+								{donatePage.whyDonate.map((reason) => <li>{reason}</li>)}
+							</ul>
+						</div>
 					</div>
-				)}
-			</section>
-
-			<section class="section-shell">
-				<div class="section-heading">
-					<h2>Your impact</h2>
+					<div class="donate-form-wrapper">
+						{givebutterWidgetId ? (
+							<givebutter-widget id={givebutterWidgetId} />
+						) : (
+							<div class="notice">
+								<h3>Donation form not configured</h3>
+								<p>Set PUBLIC_GIVEBUTTER_WIDGET_ID in your environment to enable the donation form.</p>
+							</div>
+						)}
+					</div>
 				</div>
-				<ul>
-					{donatePage.whyDonate.map((reason) => <li>{reason}</li>)}
-				</ul>
 			</section>
 		</div>
 	</main>
