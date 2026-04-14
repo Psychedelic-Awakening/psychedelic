@@ -11,7 +11,6 @@ const {
 	description = 'Rebuilt website for the Psychedelic Institute community.',
 } = Astro.props;
 
-const givebutterAccountId = import.meta.env.PUBLIC_GIVEBUTTER_ACCOUNT_ID || '';
 ---
 
 <!doctype html>
@@ -30,9 +29,6 @@ const givebutterAccountId = import.meta.env.PUBLIC_GIVEBUTTER_ACCOUNT_ID || '';
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
-		{givebutterAccountId && (
-			<script is:inline src={`https://widgets.givebutter.com/latest.umd.cjs?acct=${givebutterAccountId}`} async></script>
-		)}
 	</head>
 	<body>
 		<div class="page-shell">

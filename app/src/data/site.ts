@@ -6,6 +6,7 @@ export const site = {
 	circleInnerCircleUrl: 'https://awakening-events-pila-361df6.circle.so/checkout/inner-circle',
 	vimeoUrl: 'https://vimeo.com/1047750694/8ca5d60a50',
 	youtubeUrl: 'https://youtu.be/_H500lVkBVU',
+	givebutterUrl: 'https://givebutter.com/psychedelic-institute-shdcjx',
 };
 
 export const homeSections = {

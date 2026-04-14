@@ -2,9 +2,9 @@
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import Layout from '../layouts/Layout.astro';
-import { donatePage, site } from '../data/site';
+import { donatePage, homeSections, site } from '../data/site';
 
-const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || '';
+const amounts = homeSections.donation.amounts.filter((a) => a.value !== null);
 ---
 
 <Layout title="Donate | Psychedelic Institute" description={donatePage.intro}>
@@ -25,15 +25,42 @@ const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || ''
 							</ul>
 						</div>
 					</div>
-					<div class="donate-form-wrapper">
-						{givebutterWidgetId ? (
-							<givebutter-widget id={givebutterWidgetId} />
-						) : (
-							<div class="notice">
-								<h3>Donation form not configured</h3>
-								<p>Set PUBLIC_GIVEBUTTER_CAMPAIGN_CODE in your environment to enable the donation form.</p>
-							</div>
-						)}
+					<div class="donate-picker">
+						<h3 class="donate-picker__title">Choose amount</h3>
+						<div class="donate-frequency">
+							<button class="donate-freq-btn donate-freq-btn--active" data-freq="one-time">One-time</button>
+							<button class="donate-freq-btn" data-freq="monthly">Monthly</button>
+						</div>
+						<div class="donate-amounts">
+							{amounts.map((amt) => (
+								<button
+									class:list={['donate-amt-btn', { 'donate-amt-btn--active': amt.value === 100 }]}
+									data-amount={amt.value}
+								>
+									{amt.label}
+								</button>
+							))}
+						</div>
+						<div class="donate-custom">
+							<span class="donate-custom__symbol">$</span>
+							<input
+								type="number"
+								class="donate-custom__input"
+								placeholder="Other"
+								min="1"
+								data-custom-amount
+							/>
+							<span class="donate-custom__currency">USD</span>
+						</div>
+						<a
+							class="button donate-submit"
+							href={`${site.givebutterUrl}?amount=100`}
+							target="_blank"
+							rel="noreferrer"
+							data-donate-link
+						>
+							Donate Now
+						</a>
 					</div>
 				</div>
 			</section>
@@ -44,12 +71,65 @@ const givebutterWidgetId = import.meta.env.PUBLIC_GIVEBUTTER_CAMPAIGN_CODE || ''
 </Layout>
 
 <script is:inline>
-	const params = new URLSearchParams(window.location.search);
-	const amount = params.get('amount');
-	if (amount) {
-		const form = document.querySelector('givebutter-giving-form');
-		if (form) {
-			form.setAttribute('amount', amount);
+	const picker = document.querySelector('.donate-picker');
+	if (picker) {
+		const amountBtns = picker.querySelectorAll('.donate-amt-btn');
+		const freqBtns = picker.querySelectorAll('.donate-freq-btn');
+		const customInput = picker.querySelector('[data-custom-amount]');
+		const donateLink = picker.querySelector('[data-donate-link]');
+		const baseUrl = donateLink.getAttribute('href').split('?')[0];
+
+		let selectedAmount = 100;
+		let selectedFreq = 'one-time';
+
+		function updateLink() {
+			const params = new URLSearchParams();
+			params.set('amount', selectedAmount);
+			if (selectedFreq === 'monthly') params.set('frequency', 'monthly');
+			donateLink.href = baseUrl + '?' + params.toString();
+		}
+
+		amountBtns.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				amountBtns.forEach((b) => b.classList.remove('donate-amt-btn--active'));
+				btn.classList.add('donate-amt-btn--active');
+				selectedAmount = Number(btn.dataset.amount);
+				customInput.value = '';
+				updateLink();
+			});
+		});
+
+		freqBtns.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				freqBtns.forEach((b) => b.classList.remove('donate-freq-btn--active'));
+				btn.classList.add('donate-freq-btn--active');
+				selectedFreq = btn.dataset.freq;
+				updateLink();
+			});
+		});
+
+		customInput.addEventListener('input', () => {
+			const val = Number(customInput.value);
+			if (val > 0) {
+				amountBtns.forEach((b) => b.classList.remove('donate-amt-btn--active'));
+				selectedAmount = val;
+				updateLink();
+			}
+		});
+
+		// Handle prefilled amount from URL
+		const urlAmount = new URLSearchParams(window.location.search).get('amount');
+		if (urlAmount) {
+			const num = Number(urlAmount);
+			if (num > 0) {
+				selectedAmount = num;
+				amountBtns.forEach((b) => {
+					b.classList.toggle('donate-amt-btn--active', Number(b.dataset.amount) === num);
+				});
+				const matched = [...amountBtns].some((b) => Number(b.dataset.amount) === num);
+				if (!matched) customInput.value = num;
+				updateLink();
+			}
 		}
 	}
 </script>

@@ -375,7 +375,7 @@ a.price:hover {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1.5rem;
-	align-items: start;
+	align-items: center;
 }
 
 .donate-copy {
@@ -398,13 +398,117 @@ a.price:hover {
 	line-height: 1.9;
 }
 
-.donate-form-wrapper {
+.donate-picker {
 	display: grid;
-	place-items: center;
+	gap: 1rem;
+	padding: 1.5rem;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-lg);
+	background: var(--panel);
 }
 
-.donate-form-wrapper givebutter-widget {
+.donate-picker__title {
+	text-align: center;
+}
+
+.donate-frequency {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-sm);
+	overflow: hidden;
+}
+
+.donate-freq-btn {
+	padding: 0.75rem;
+	border: none;
+	background: transparent;
+	color: var(--muted);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 180ms ease, color 180ms ease;
+}
+
+.donate-freq-btn--active {
+	background: var(--panel-strong);
+	color: var(--text);
+}
+
+.donate-amounts {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.6rem;
+}
+
+.donate-amt-btn {
+	padding: 0.85rem 0.5rem;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-sm);
+	background: transparent;
+	color: var(--text);
+	font: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.donate-amt-btn:hover {
+	background: var(--panel-strong);
+	transform: translateY(-1px);
+}
+
+.donate-amt-btn--active {
+	border-color: var(--accent);
+	background: rgba(212, 255, 79, 0.1);
+	color: var(--accent);
+}
+
+.donate-custom {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.85rem 1rem;
+	border: 1px solid var(--line);
+	border-radius: var(--radius-sm);
+	background: transparent;
+}
+
+.donate-custom__symbol {
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.donate-custom__input {
+	flex: 1;
+	border: none;
+	background: transparent;
+	color: var(--text);
+	font: inherit;
+	font-size: 1.1rem;
+	outline: none;
+	-moz-appearance: textfield;
+}
+
+.donate-custom__input::placeholder {
+	color: var(--muted);
+}
+
+.donate-custom__input::-webkit-outer-spin-button,
+.donate-custom__input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.donate-custom__currency {
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.donate-submit {
 	width: 100%;
+	text-align: center;
+	font-size: 1.05rem;
 }
 
 @media (max-width: 980px) {
