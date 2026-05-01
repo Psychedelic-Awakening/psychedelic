@@ -17,14 +17,14 @@ import { guardianPage, site } from '../data/site';
 					<h1>{guardianPage.title}</h1>
 					<p class="section-copy">{guardianPage.intro}</p>
 				</div>
+
+				<section class="notice">
+					<h3>Current Status</h3>
+					<p>{guardianPage.note}</p>
+				</section>
 			</section>
 
 			<GuardianForm />
-
-			<section class="notice">
-				<h3>Current Status</h3>
-				<p>{guardianPage.note}</p>
-			</section>
 		</div>
 	</main>
 
